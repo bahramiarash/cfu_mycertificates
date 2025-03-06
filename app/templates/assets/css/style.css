@@ -1,0 +1,9 @@
+body, ul{
+    direction: rtl;
+}
+
+.certlist{
+    direction: rtl;
+    font-family: 'B Nazanin';
+    font-size: 14rem;
+}

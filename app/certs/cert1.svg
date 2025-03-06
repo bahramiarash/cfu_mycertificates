@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+  <rect x="40.934" y="47.361" width="76.793" height="94.385" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);"/>
+  <path d="M 413.734 78.823 L 448.579 138.363 L 378.89 138.363 L 413.734 78.823 Z" bx:shape="triangle 378.89 78.823 69.689 59.54 0.5 0 1@d33dd50b" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="415.765" cy="74.256" rx="30.447" ry="29.263"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 399.865 59.54 L 430.311 60.217 L 413.058 82.544 L 399.865 59.54 Z"/>
+  <text style="fill: rgb(51, 51, 51); font-family: &quot;B Nazanin&quot;; font-size: 16px; font-weight: 700; stroke-linecap: round; text-anchor: end; white-space: pre;" lang="fa"><tspan x="452.977" y="208.728">  بدینوسیله گواهی می شود که </tspan><tspan x="452.977" dy="1em">​</tspan><tspan x="452.977" dy="1em">​</tspan><tspan>دوره آموزشی پایتون را به مدت 2 ساعت در مورخ 1403/12/12 طی کرده اند.</tspan></text>
+  <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; white-space: pre;" x="49.053" y="209.405">{{full_name}}</text>
+</svg>

@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb_container
+    environment:
+      MYSQL_ROOT_PASSWORD: "12#qwEasDzxC"
+      MYSQL_DATABASE: "cert_db"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      # Mount your init script so MariaDB runs it on first startup
+      - ./app/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  flask_app:
+    build: .
+    container_name: flask_container
+    depends_on:
+      - mariadb
+    environment:
+      DB_HOST: mariadb
+      DB_USER: root
+      DB_PASSWORD: "12#qwEasDzxC"
+      DB_NAME: "cert_db"
+      SECRET_KEY: "replace_me_with_random_string"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    restart: always
+
+volumes:
+  mariadb_data:

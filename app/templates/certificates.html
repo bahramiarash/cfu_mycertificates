@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>گواهینامه های من</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="certlist">
+        <h1>فهرست گواهینامه ها</h1>
+        <ul>
+        {% for cert in certificates %}
+            <li>
+            <a href="/certificate/{{ cert[0] }}">{{ cert[1] }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

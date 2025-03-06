@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Certificates</title>
+</head>
+<body>
+    <h1>My Certificates</h1>
+    <ul id="certificates"></ul>
+
+    <script>
+        const national_id = '1234567890';  // Replace with logged-in user's ID
+
+        fetch(`/certificates/${national_id}`)
+            .then(response => response.json())
+            .then(data => {
+                let list = document.getElementById('certificates');
+                data.forEach(cert => {
+                    let item = document.createElement('li');
+                    item.innerHTML = `<a href="/certificate/${cert.id}" target="_blank">${cert.title} (Issued: ${cert.issue_date})</a>`;
+                    list.appendChild(item);
+                });
+            });
+    </script>
+</body>
+</html>
