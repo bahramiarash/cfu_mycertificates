@@ -81,44 +81,25 @@ def list_certificates():
     # return jsonify([{"cert_id": r[0], "cert_name": r[1]} for r in rows])
     return render_template("certificates.html", certificates=rows)
 
-# @app.route("/certificate/<int:cert_id>")
-# def get_certificate(cert_id):
-#     # user = session.get("user")
-#     # if not user:
-#     #     return redirect(url_for("login"))
-
-#     national_id = 1234567890 #user.get("sub") or user.get("email")
-#     cursor.execute("""
-#         SELECT c.cert_file, c.cert_name
-#         FROM certificates c
-#         JOIN users u ON c.user_id = u.id
-#         WHERE c.id = %s AND u.national_id = %s
-#     """, (cert_id, national_id))
-#     row = cursor.fetchone()
-
-#     if row:
-#         cert_file, cert_name = row
-#         return send_file(io.BytesIO(cert_file), mimetype="image/svg+xml",
-#                          as_attachment=True, download_name=f"{cert_name}.svg")
-#     return jsonify({"error": "Not found or not yours"}), 404
-
-@app.route("/certificate/<int:user_id>")
-def show_certificate(user_id):
+@app.route("/certificate/<int:cert_id>")
+def show_certificate(cert_id):
     # 1. Check if user is logged in (optional)
     # user_session = session.get("user")
     # if not user_session:
     #     return redirect(url_for("login"))  # or handle unauthorized access
 
     # 2. Get user's full name from DB
+    user_id = 1
     cursor.execute("""
-        SELECT fname, lname
-        FROM users
-        WHERE id = %s
-    """, (user_id,))
+        SELECT users.fname as fname, users.lname as lname, cert_name
+        FROM certificates join users on (users.id = certificates.user_id)
+        WHERE certificates.user_id = %s and certificates.id = %s
+    """, (user_id, cert_id))
     row = cursor.fetchone()
     if row:
-        fname, lname = row
+        fname, lname, cert_name = row
         user_name = f"{fname} {lname}"
+        cert_name = f"{cert_name}"
     else:
         user_name = "Unknown User"
 
@@ -129,6 +110,7 @@ def show_certificate(user_id):
 
     # 4. Replace placeholder with the actual user name
     updated_svg = svg_content.replace("{{full_name}}", user_name)
+    updated_svg = updated_svg.replace("{{cert_name}}", cert_name)
 
     # 5. Serve the updated SVG as image/svg+xml
     return Response(updated_svg, mimetype="image/svg+xml")
